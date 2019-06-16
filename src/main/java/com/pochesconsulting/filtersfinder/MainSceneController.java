@@ -28,6 +28,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -257,7 +258,7 @@ public class MainSceneController implements Initializable {
     void loadFiltersDetailsClicked(ActionEvent event) {
         LoadFiltersDetails.load();
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.lenghtSpn.setValueFactory(createValueFactory("Double", "1.25", "100.00", "1.25", "0.25"));
@@ -269,6 +270,9 @@ public class MainSceneController implements Initializable {
         this.totalPriceCol.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
         this.lastActCol.setCellValueFactory(new PropertyValueFactory<>("lastActivity"));
         this.statusCol.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
+        
+        Tooltip pleatedHelp = new Tooltip("Pleated filters last up to 3 months each vs 1 month on the non-pleated filters");
+        this.pleatedChk.setTooltip(pleatedHelp);
 
         loadOpenOrdersList();
 

@@ -171,9 +171,9 @@
                                 <columns>
                                   <TableColumn fx:id="orderNumCol" prefWidth="75.0" text="Order #" />
                                   <TableColumn fx:id="skuNumCol" prefWidth="75.0" text="Sku #" />
-                                    <TableColumn fx:id="totalPriceCol" prefWidth="75.0" text="Total Price" />
-                                    <TableColumn fx:id="lastActCol" prefWidth="105.0" text="Last Activity" />
-                                    <TableColumn fx:id="statusCol" prefWidth="75.0" text="Status" />
+                                    <TableColumn fx:id="totalPriceCol" prefWidth="96.0" text="Total Price" />
+                                    <TableColumn fx:id="lastActCol" prefWidth="102.0" text="Last Activity" />
+                                    <TableColumn fx:id="statusCol" prefWidth="63.0" text="Status" />
                                 </columns>
                               </TableView>
                            </children>
