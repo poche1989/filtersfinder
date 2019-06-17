@@ -7,9 +7,6 @@ import com.pochesconsulting.dto.OrderDetails;
 import com.pochesconsulting.hibernate.LoadFiltersDetails;
 import javafx.event.ActionEvent;
 import java.net.URL;
-import java.security.Timestamp;
-import java.time.Instant;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,7 +14,10 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -32,10 +32,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 public class MainSceneController implements Initializable {
 
@@ -108,6 +107,9 @@ public class MainSceneController implements Initializable {
     @FXML
     private TableColumn<?, ?> actionCol;
 
+    @FXML
+    private Button filtersDetailsCloseBtn;
+
     FilterDetails filter = new FilterDetails();
     OrderDetails order = new OrderDetails();
     //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -170,6 +172,9 @@ public class MainSceneController implements Initializable {
         ObservableList<OrderDetails> openOrders = FXCollections.observableArrayList(session.createQuery(hql).setParameter("Closed", "Closed").list());
         this.openOrdersTable.setItems(openOrders);
         this.openOrdersTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
+        session.clear();
+        session.close();
     }
 
     @FXML
@@ -188,7 +193,7 @@ public class MainSceneController implements Initializable {
             session.getTransaction().commit();
         }
         session.close();
-
+        onRefreshBtnClicked(event);
     }
 
     @FXML
@@ -258,7 +263,23 @@ public class MainSceneController implements Initializable {
     void loadFiltersDetailsClicked(ActionEvent event) {
         LoadFiltersDetails.load();
     }
-    
+
+    @FXML
+    void manageFilters(ActionEvent event) {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ManageFiltersDetails.fxml"));
+            Parent manageFiltersRoot = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Manage Filters Details");
+            stage.setScene(new Scene(manageFiltersRoot));
+            stage.show();
+            
+        } catch (Exception ex) {
+            System.out.println("Can't load window: " + ex);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.lenghtSpn.setValueFactory(createValueFactory("Double", "1.25", "100.00", "1.25", "0.25"));
@@ -270,7 +291,7 @@ public class MainSceneController implements Initializable {
         this.totalPriceCol.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
         this.lastActCol.setCellValueFactory(new PropertyValueFactory<>("lastActivity"));
         this.statusCol.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
-        
+
         Tooltip pleatedHelp = new Tooltip("Pleated filters last up to 3 months each vs 1 month on the non-pleated filters");
         this.pleatedChk.setTooltip(pleatedHelp);
 

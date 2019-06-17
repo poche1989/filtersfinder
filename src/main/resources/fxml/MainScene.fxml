@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
@@ -37,6 +38,7 @@
           <Menu mnemonicParsing="false" text="Edit">
             <items>
               <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem onAction="#manageFilters" text="Manage Filters Details" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -60,7 +62,7 @@
    <center>
       <Accordion BorderPane.alignment="CENTER">
         <panes>
-          <TitledPane animated="false" text="untitled 1">
+          <TitledPane animated="false" text="Find Filter &amp; Create Orders">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -140,7 +142,10 @@
                                                       <VBox alignment="CENTER">
                                                          <children>
                                                             <Label />
-                                                            <CheckBox fx:id="pleatedChk" mnemonicParsing="false" onAction="#isChecked" text="Pleated" />
+                                                            <CheckBox fx:id="pleatedChk" mnemonicParsing="false" onAction="#isChecked" text="Pleated">
+                                                               <cursor>
+                                                                  <Cursor fx:constant="WAIT" />
+                                                               </cursor></CheckBox>
                                                          </children>
                                                       </VBox>
                                                       <VBox alignment="CENTER_LEFT">
@@ -191,7 +196,7 @@
                   </AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane animated="false" text="untitled 2">
+          <TitledPane animated="false" text="Manage Open Orders">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -226,7 +231,7 @@
                   </AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane animated="false" text="untitled 3">
+          <TitledPane animated="false" text="Orders History">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
