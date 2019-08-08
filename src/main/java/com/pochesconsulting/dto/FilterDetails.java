@@ -5,6 +5,7 @@
  */
 package com.pochesconsulting.dto;
 
+import javafx.scene.control.CheckBox;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,10 +18,10 @@ import javax.persistence.Id;
 public class FilterDetails {
 
     @Column(name = "start_range")
-    private Double startRange;
+    private Integer startRange;
 
     @Column(name = "end_range")
-    private Double endRange;
+    private Integer endRange;
 
     @Id
     @Column(name = "sku_number")
@@ -30,9 +31,9 @@ public class FilterDetails {
     private Double unitPrice;
 
     @Column(name = "is_pleated")
-    private Integer isPleated;
-
-    public FilterDetails(Double start_range, Double end_range, String sku, Double price, Integer pleated) {
+    private Boolean isPleated;
+    
+    public FilterDetails(Integer start_range, Integer end_range, String sku, Double price, Boolean pleated) {
         this.startRange = start_range;
         this.endRange = end_range;
         this.skuNumber = sku;
@@ -49,19 +50,19 @@ public class FilterDetails {
         return "FilterDetails{" + "start_range=" + startRange + ", end_range=" + endRange + ", sku=" + skuNumber + ", price=" + unitPrice + ", pleated=" + isPleated + '}';
     }
 
-    public Double getStartRange() {
+    public Integer getStartRange() {
         return startRange;
     }
 
-    public void setStartRange(Double startRange) {
+    public void setStartRange(Integer startRange) {
         this.startRange = startRange;
     }
 
-    public Double getEndRange() {
+    public Integer getEndRange() {
         return endRange;
     }
 
-    public void setEndRange(Double endRange) {
+    public void setEndRange(Integer endRange) {
         this.endRange = endRange;
     }
 
@@ -81,11 +82,11 @@ public class FilterDetails {
         this.unitPrice = unitPrice;
     }
 
-    public Integer getIsPleated() {
+    public Boolean getIsPleated() {
         return isPleated;
     }
 
-    public void setIsPleated(Integer isPleated) {
+    public void setIsPleated(Boolean isPleated) {
         this.isPleated = isPleated;
     }
 }

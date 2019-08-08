@@ -49,7 +49,7 @@ public class LoadFiltersDetails {
                 while (scan.hasNext()) {
                     String[] filterData = scan.nextLine().split(", ");
 
-                    FilterDetails filter = new FilterDetails(Double.valueOf(filterData[0]), Double.valueOf(filterData[1]), filterData[2], Double.valueOf(filterData[3]), Integer.valueOf(filterData[4]));
+                    FilterDetails filter = new FilterDetails(Integer.valueOf(filterData[0]), Integer.valueOf(filterData[1]), filterData[2], Double.valueOf(filterData[3]), Boolean.valueOf(filterData[4]));
                     session.save(filter);
 
                 }

@@ -38,11 +38,11 @@
          <center>
             <TableView fx:id="filtersDetailsTbl" editable="true" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="75.0" text="Sku #" />
-                <TableColumn prefWidth="75.0" text="Start" />
-                  <TableColumn prefWidth="75.0" text="End" />
-                  <TableColumn prefWidth="75.0" text="Pleated?" />
-                  <TableColumn prefWidth="75.0" text="Price" />
+                <TableColumn fx:id="skuCol" prefWidth="75.0" text="Sku #" />
+                <TableColumn fx:id="startCol" prefWidth="75.0" text="Start" />
+                  <TableColumn fx:id="endCol" prefWidth="75.0" text="End" />
+                  <TableColumn fx:id="pleatedCol" prefWidth="75.0" text="Pleated?" />
+                  <TableColumn fx:id="priceCol" prefWidth="75.0" text="Price" />
               </columns>
             </TableView>
          </center>

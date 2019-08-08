@@ -11,12 +11,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.hibernate.Session;
 
 /**
@@ -29,6 +29,20 @@ public class ManageFiltersDetailsController implements Initializable {
     @FXML
     private TableView<FilterDetails> filtersDetailsTbl;
 
+    @FXML
+    private TableColumn<FilterDetails, String> skuCol;
+
+    @FXML
+    private TableColumn<FilterDetails, Integer> startCol;
+
+    @FXML
+    private TableColumn<FilterDetails, Integer> endCol;
+
+    @FXML
+    private TableColumn<FilterDetails, Boolean> pleatedCol;
+    
+    @FXML
+    private TableColumn<FilterDetails, Double> priceCol;    
     /**
      * Initializes the controller class.
      */
@@ -41,9 +55,16 @@ public class ManageFiltersDetailsController implements Initializable {
         Session session = SystemHelper.getSession();
         String hql = "FROM FilterDetails";
 
-        ObservableList<FilterDetails> filtersDetails = FXCollections.observableArrayList(session.createQuery(hql).list());
+        ObservableList<FilterDetails> filtersDetails = FXCollections.observableArrayList(session.createQuery(hql).list());      
+        
         this.filtersDetailsTbl.setItems(filtersDetails);
-//        this.filtersDetailsTbl.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        this.filtersDetailsTbl.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
+        this.skuCol.setCellValueFactory(new PropertyValueFactory<>("skuNumber"));
+        this.endCol.setCellValueFactory(new PropertyValueFactory<>("endRange"));
+        this.pleatedCol.setCellValueFactory(new PropertyValueFactory<>("isPleated"));
+        this.startCol.setCellValueFactory(new PropertyValueFactory<>("startRange"));
+        this.priceCol.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
         
         session.clear();
         session.close();

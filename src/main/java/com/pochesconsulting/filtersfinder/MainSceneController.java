@@ -96,6 +96,9 @@ public class MainSceneController implements Initializable {
     private TableColumn<OrderDetails, String> skuNumCol;
 
     @FXML
+    private TableColumn<OrderDetails, Integer> amtCol;
+
+    @FXML
     private TableColumn<OrderDetails, Double> totalPriceCol;
 
     @FXML
@@ -170,9 +173,14 @@ public class MainSceneController implements Initializable {
         String hql = "FROM OrderDetails WHERE orderStatus NOT LIKE :Closed";
 
         ObservableList<OrderDetails> openOrders = FXCollections.observableArrayList(session.createQuery(hql).setParameter("Closed", "Closed").list());
+
+        for (OrderDetails order : openOrders) {
+            System.out.println(order);
+        }
+
         this.openOrdersTable.setItems(openOrders);
         this.openOrdersTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        
+
         session.clear();
         session.close();
     }
@@ -274,7 +282,7 @@ public class MainSceneController implements Initializable {
             stage.setTitle("Manage Filters Details");
             stage.setScene(new Scene(manageFiltersRoot));
             stage.show();
-            
+
         } catch (Exception ex) {
             System.out.println("Can't load window: " + ex);
         }
@@ -288,6 +296,7 @@ public class MainSceneController implements Initializable {
 
         this.orderNumCol.setCellValueFactory(new PropertyValueFactory<>("orderNumber"));
         this.skuNumCol.setCellValueFactory(new PropertyValueFactory<>("sku"));
+        this.amtCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         this.totalPriceCol.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
         this.lastActCol.setCellValueFactory(new PropertyValueFactory<>("lastActivity"));
         this.statusCol.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
