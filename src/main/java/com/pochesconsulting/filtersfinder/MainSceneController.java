@@ -287,6 +287,7 @@ public class MainSceneController implements Initializable {
             System.out.println("Can't load window: " + ex);
         }
     }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
