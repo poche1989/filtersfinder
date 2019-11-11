@@ -5,7 +5,6 @@
  */
 package com.pochesconsulting.dto;
 
-import javafx.scene.control.CheckBox;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

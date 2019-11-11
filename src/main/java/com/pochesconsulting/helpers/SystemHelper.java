@@ -5,16 +5,9 @@
  */
 package com.pochesconsulting.helpers;
 
-import com.pochesconsulting.dto.OrderDetails;
-import com.pochesconsulting.filtersfinder.MainSceneController;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableView;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
